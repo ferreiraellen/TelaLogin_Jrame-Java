@@ -1,0 +1,95 @@
+package view;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.BorderLayout;
+import javax.swing.JTextPane;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import java.awt.Font;
+import java.awt.Color;
+
+public class TelaLogin {
+
+	private JFrame frame;
+	private JTextField textField;
+	private JTextField textField_1;
+
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TelaLogin window = new TelaLogin();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	
+	public TelaLogin() {
+		initialize();
+	}
+
+	
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(Color.CYAN);
+		frame.getContentPane().setForeground(Color.BLUE);
+		frame.getContentPane().setFont(new Font("SansSerif", Font.BOLD, 15));
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JLabel txtNome = new JLabel("Login:");
+		txtNome.setFont(new Font("SansSerif", Font.BOLD, 14));
+		txtNome.setBounds(87, 79, 55, 16);
+		frame.getContentPane().add(txtNome);
+		
+		textField = new JTextField();
+		textField.setBounds(154, 74, 150, 21);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel txtSenha = new JLabel("Senha:");
+		txtSenha.setFont(new Font("SansSerif", Font.BOLD, 15));
+		txtSenha.setBounds(87, 119, 55, 16);
+		frame.getContentPane().add(txtSenha);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(154, 114, 150, 21);
+		frame.getContentPane().add(textField_1);
+		textField_1.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Entrar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				if(verificaLogin(txtNome.getText(), txtSenha.getText())) {
+					
+					JOptionPane.showMessageDialog(null, "Bem-vinde ao sistema!");
+				}else {
+					
+					JOptionPane.showMessageDialog(null, "Dados invalidos!");
+
+				}
+			
+			}
+			
+		});
+		btnNewButton.setBounds(180, 158, 90, 28);
+		frame.getContentPane().add(btnNewButton);
+	}
+	
+	public boolean verificaLogin(String Login, String Senha) {
+		return Login.equals("usuario") && Senha.equals("123");
+	}
+}
